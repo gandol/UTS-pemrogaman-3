@@ -1,17 +1,24 @@
 <!DOCTYPE html>
+
+<!-- script untuk menghitung beerat badan ideal
+develop by laptop asus -->
+
 <html>
 <head>
   <title>Hitung BB Idealmu !!</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css"> <!-- memasukkan css -->
 </head>
 <body>
   <?php 
-error_reporting(0);
+error_reporting(0); //jika ada erer maka tidak akan ditampilkan//
   if(isset($_POST['hitung'])){
+    //Inisialisasi variabel berdasarkan idnya//
     $tinggi = $_POST['tinggi'];
     $bb_skrng = $_POST['bb_now'];
     $gender = $_POST['jenis_kelamin'];
     $usia_hamil=$_POST['usia_hamil'];
+
+    //percabangan ketika user memilih bendasarkan combobox yg tersedia//
     switch ($gender) {
       case 'laki':
         $hasil =($tinggi-100)-(($tinggi-100)*0.1);
@@ -31,6 +38,8 @@ error_reporting(0);
             }
       break;
     }
+
+    //perhitungan terahir//
     if($bb_skrng>=$hasil){
       $diet=$bb_skrng-$hasil;  
     }else{
@@ -63,6 +72,9 @@ error_reporting(0);
 
       <input type="submit" name="hitung" value="Hitung" class="tombol">                     
     </form>
+
+    <!-- penentuan berad badannya ideal atau tidak -->
+
     <?php if(isset($_POST['hitung'])){ ?>
       <p class="brand"> Berat Badan Ideal</p>
       <input type="text" value="<?php echo $hasil." Kg"; ?>" class="bil">
